@@ -2,30 +2,40 @@ package models.dt;
 
 import features.Feature;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+import static models.dt.Node.NodeType.*;
 
 /**
+ * Decision tree node
  * @author viresh.gehlawat
  */
-
-//Decision tree node
 public class Node {
-	private List<Node> children;
-	private Node parent;
-	private Feature feature;
+	private Map<Object, Node> children;
 	private Boolean value;
+	private Integer label;
+	private Feature feature;
+	private NodeType nodeType;
 
-	public Node(Boolean value) {
+	private Node(Boolean value, Integer label) {
+		this.children = new HashMap<>();
 		this.value = value;
+		this.label = label;
+		this.feature = null;
+		this.nodeType = LEAF;
 	}
 
-	public Node(Feature bestSplit) {
+	private Node(Feature bestSplit, Integer label) {
+		this.children = new HashMap<>();
+		this.value = null;
+		this.label = label;
 		this.feature = bestSplit;
+		this.nodeType = INTERNAL;
 	}
 
-	public List<Node> getChildren() {
-		return children;
+	public Node getChildren(Integer childLabel) {
+		return children.get(childLabel);
 	}
 
 	public Feature getFeature() {
@@ -37,21 +47,20 @@ public class Node {
 	}
 
 	public boolean isLeaf() {
-		return children == null || children.size() == 0;
+		return nodeType.equals(LEAF);
 	}
 
-	public static Node newLeafNode(Boolean value) {
-		return new Node(value);
+	public static Node newLeafNode(Boolean value, Integer label) {
+		return new Node(value, label);
 	}
 
-	public static Node newNode(Feature bestSplit) {
-		return new Node(bestSplit);
+	public static Node newInternalNode(Feature bestSplit, Integer label) {
+		return new Node(bestSplit, label);
 	}
 
 	public void addChild(Node node) {
-		if (children == null) {
-			children = new LinkedList<>();
-		}
-		children.add(node);
+		this.children.put(node.label, node);
 	}
+
+	enum NodeType { LEAF, INTERNAL }
 }

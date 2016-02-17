@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author viresh.gehlawat
  */
-public class LabelledDataRow implements DataRow<Integer> {
+public class DiscreteDataRow implements DataRow<Integer> {
 
 	/**
 	 * Unique identifier for this input. An example could be "DataSet1"
@@ -23,11 +23,11 @@ public class LabelledDataRow implements DataRow<Integer> {
 	private boolean label;
 
 	/**
-	 * Collection of attributes within this data set. Each attribute refer to one or more {@see Feature}.
+	 * Collection of attributes within this data set. Each attribute can refer to one or more {@see Feature}.
 	 */
 	private List<Integer> attributes;
 
-	public LabelledDataRow(String identifier, boolean label, List<Integer> attributes) {
+	public DiscreteDataRow(String identifier, boolean label, List<Integer> attributes) {
 		this.identifier = identifier;
 		this.label = label;
 		this.attributes = new LinkedList<>();
@@ -45,15 +45,6 @@ public class LabelledDataRow implements DataRow<Integer> {
 
 	public List<Integer> getAttributes() {
 		return attributes;
-	}
-
-	@Override
-	public String toString() {
-		return "LabelledDataRow{" +
-				"identifier='" + identifier + '\'' +
-				", label=" + label +
-				", attributes=" + attributes +
-				'}';
 	}
 
 }

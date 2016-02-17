@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * @author viresh.gehlawat
  */
-public interface DTAlgorithm {
-	public Feature getBestFeature(List<DataRow> dataRows, List<Feature> features);
-	public Boolean getDefaultValue(List<DataRow> inputDataList);
+public interface DecisionTreeCreator {
+	public Node createTree(List<DataRow> dataRows, List<Feature> features);
 }

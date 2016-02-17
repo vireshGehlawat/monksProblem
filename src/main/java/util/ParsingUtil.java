@@ -1,8 +1,6 @@
 package util;
 
-import data.LabelledDataRow;
-import features.Feature;
-import features.SimpleFeature;
+import data.DiscreteDataRow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +20,7 @@ public class ParsingUtil {
 	 * @param serializedData String in the given format Sample Input String : "data_5:  1 1 1 1 3 1  ->  1"
 	 * @return new instance of LabelledDataRow
 	 */
-	public static LabelledDataRow parse(String serializedData) {
+	public static DiscreteDataRow parse(String serializedData) {
 		String[] split = serializedData.split(IDENTIFIER_DELIMITER);
 
 		String identifier = split[0];
@@ -31,7 +29,7 @@ public class ParsingUtil {
 
 		List<Integer> attributes = getAttributes(split[1].split("->")[0].trim());
 
-		return new LabelledDataRow(identifier, labelValue == 0, attributes);
+		return new DiscreteDataRow(identifier, labelValue == 0, attributes);
 	}
 
 	private static List<Integer> getAttributes(String s) {

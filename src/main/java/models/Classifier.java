@@ -8,7 +8,11 @@ import java.util.List;
 /**
  * @author viresh.gehlawat
  */
-public interface Model<V> {
+
+/**
+ *
+ */
+public interface Classifier {
 	public void train(List<DataRow> inputDataList, List<Feature> features);
-	public V predict(DataRow dataRow);
+	public Boolean predict(DataRow dataRow);
 }
