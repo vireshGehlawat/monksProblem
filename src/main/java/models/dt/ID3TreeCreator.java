@@ -90,7 +90,8 @@ public class ID3TreeCreator implements DecisionTreeCreator {
 		for (Feature feature : features) {
 			Map<Integer, List<DataRow>> dataSplitMap = feature.splitData(dataRows);
 
-			List<List<DataRow>> splits = dataSplitMap.values().parallelStream().filter(list -> !list.isEmpty()).collect(Collectors.toList());
+			Stream<List<DataRow>> listStream = dataSplitMap.values().parallelStream().filter(list -> !list.isEmpty());
+			List<List<DataRow>> splits = listStream.collect(Collectors.toList());
 
 			// Computing the average impurity across all values of a feature
 			double impurity = splits.stream().mapToDouble(EntropyCalculator::calculate).average().getAsDouble();

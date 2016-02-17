@@ -19,7 +19,7 @@ public class Node {
 	private NodeType nodeType;
 
 	private Node(Boolean value, Integer label) {
-		this.children = new HashMap<>();
+		this.children = null;
 		this.value = value;
 		this.label = label;
 		this.feature = null;

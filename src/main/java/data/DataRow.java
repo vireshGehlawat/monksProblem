@@ -18,7 +18,7 @@ public interface DataRow <T> {
 	String getIdentifier();
 
 	/**
-	 * @return Label value in case inout data set is labelled.
+	 * @return Label value in case input data set is labelled.
 	 */
 	Boolean getLabel();
 }

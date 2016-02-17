@@ -88,8 +88,6 @@ public class MonksProblem {
 				count[3]++;
 			}
 		} );
-//		System.out.println("TruePositives: " + count[0] + " FalsePositives: " + count[3] +
-//				" TrueNegatives " + count[1] + " FalseNegatives " + count[2]);
 		System.out.println("Precision: " + (count[0] * 100)/(count[3] + count[0]));
 		System.out.println("Recall: " + (count[0] * 100)/(count[0] + count[2]));
 		System.out.println("Accuracy: " + ((count[0] + count[1]) * 100)/(count[0] + count[2] + count[1] + count[3]));
