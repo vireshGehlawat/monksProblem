@@ -29,7 +29,7 @@ public class ParsingUtil {
 
 		List<Integer> attributes = getAttributes(split[1].split("->")[0].trim());
 
-		return new DiscreteDataRow(identifier, labelValue == 0, attributes);
+		return new DiscreteDataRow(identifier, labelValue == 1, attributes);
 	}
 
 	private static List<Integer> getAttributes(String s) {
