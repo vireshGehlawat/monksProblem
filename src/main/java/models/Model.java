@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author viresh.gehlawat
  */
-public interface Model<T, V> {
+public interface Model<V> {
 	public void train(List<DataRow> inputDataList, List<Feature> features);
 	public V predict(DataRow dataRow);
 }

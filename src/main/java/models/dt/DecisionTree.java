@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author viresh.gehlawat
  */
-public class DecisionTree implements Model<Integer, Boolean> {
+public class DecisionTree implements Model<Boolean> {
 
 	private final int maxDepth;
 	private final double homogeneity;

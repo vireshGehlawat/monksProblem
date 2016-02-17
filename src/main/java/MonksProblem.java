@@ -32,7 +32,7 @@ public class MonksProblem {
 		double homogeneity = 0.8;
 
 		//Create new instance of decision tree.
-		Model<Integer, Boolean> model = new DecisionTree(maxDepth, homogeneity);
+		Model<Boolean> model = new DecisionTree(maxDepth, homogeneity);
 
 		//Train the model with given training set.
 		model.train(trainingSet, features);
