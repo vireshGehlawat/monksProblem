@@ -1,10 +1,10 @@
 import com.google.common.collect.Lists;
 import data.DataRow;
-import data.LabelledDataRow;
 import features.Feature;
 import features.SimpleFeature;
 import models.Model;
 import models.dt.DecisionTree;
+import util.ParsingUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,10 +19,11 @@ import java.util.stream.Stream;
  * @author viresh.gehlawat
  */
 public class MonksProblem {
+
 	public static void main(String[] args) {
 
 		String trainingFile = args[0];
-		List<DataRow> trainingSet = readInputData(trainingFile, LabelledDataRow::parse);
+		List<DataRow> trainingSet = readInputData(trainingFile, ParsingUtil::parse);
 
 		List<Feature> features = prepareFeatureList();
 
@@ -38,8 +39,15 @@ public class MonksProblem {
 
 		String testFile = args[1];
 		//Evaluate and compute accuracy.
-		List<DataRow> testSet = readInputData(testFile, LabelledDataRow::parse);
-		testSet.stream().forEach(set -> System.out.println(model.predict(set) + " " + set.getLabel()));
+		List<DataRow> testSet = readInputData(testFile, ParsingUtil::parse);
+		final double[] count = {0.0,0.0};
+		testSet.stream().forEach(set -> {
+			if (model.predict(set) == set.getLabel()) {
+				count[0]++;
+			}
+			count[1]++;
+		});
+		System.out.println("Accuracy: " + (count[0] * 100)/count[1]);
 	}
 
 	/**
@@ -88,4 +96,5 @@ public class MonksProblem {
 		features.add(new SimpleFeature(31, 2));
 		return features;
 	}
+
 }
