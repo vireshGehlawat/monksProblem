@@ -29,7 +29,7 @@ public class MonksProblem {
 
 		List<Feature> features = prepareFeatureList();
 
-		//TODO get this from config.
+		//Tune these to get better results as per input.
 		int maxDepth = 4;
 		double homogeneity = 0.8 ;
 
